@@ -18,7 +18,7 @@ class SvetparsSpider(scrapy.Spider):
             yield {
                 'name': light.css('div.lsooF span::text').get(),
                 'price': light.css('div.pY3d2 span::text').get(),
-                'url': light.css('a').attrib['href']
+                'url': response.urljoin(light.css('a').attrib['href'])
             }
         self.logger.info("parse end")
         # Попытка найти кнопку "Следующая страница" и выполнить клик
